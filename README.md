@@ -7,7 +7,7 @@
 ![ccxt](https://img.shields.io/badge/ccxt-4.2%2B-orange)
 ![asyncio](https://img.shields.io/badge/asyncio-async%2Fawait-green)
 ![License](https://img.shields.io/badge/license-MIT-lightgrey)
-![CI](https://img.shields.io/badge/CI-GitHub%20Actions-yellow?logo=github)
+![CI]([![CI](https://img.shields.io/badge/CI-GitHub%20Actions-yellow?logo=github)](https://github.com/eNNN0x/crypto-arbitrage-scanner))
 
 ---
 
@@ -314,4 +314,5 @@ MIT License — see [LICENSE](LICENSE) for details.
 
 ---
 
-*Built with Python · ccxt · asyncio · Telegram Bot API*
+*Built by [eNNN0x](https://github.com/eNNN0x) · Python · ccxt · asyncio · Telegram Bot API*
+
