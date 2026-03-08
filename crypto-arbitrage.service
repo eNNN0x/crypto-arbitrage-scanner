@@ -1,0 +1,49 @@
+# ============================================================
+# systemd service unit for Crypto Arbitrage Scanner
+#
+# SETUP (on your VPS):
+#   1. Copy this file to /etc/systemd/system/crypto-arbitrage.service
+#   2. Edit User, WorkingDirectory, and ExecStart paths as needed
+#   3. sudo systemctl daemon-reload
+#   4. sudo systemctl enable crypto-arbitrage
+#   5. sudo systemctl start crypto-arbitrage
+#   6. sudo journalctl -u crypto-arbitrage -f   (follow logs)
+# ============================================================
+
+[Unit]
+Description=Crypto Arbitrage Scanner
+Documentation=https://github.com/yourusername/crypto-arbitrage-scanner
+After=network-online.target
+Wants=network-online.target
+StartLimitIntervalSec=60
+StartLimitBurst=5
+
+[Service]
+Type=simple
+User=ubuntu
+Group=ubuntu
+WorkingDirectory=/home/ubuntu/crypto-arbitrage-scanner
+
+# Load .env file
+EnvironmentFile=/home/ubuntu/crypto-arbitrage-scanner/.env
+
+# Use the venv python
+ExecStart=/home/ubuntu/crypto-arbitrage-scanner/venv/bin/python main.py
+
+# Restart policy
+Restart=on-failure
+RestartSec=10s
+
+# Logging
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=crypto-arbitrage
+
+# Security hardening
+NoNewPrivileges=yes
+PrivateTmp=yes
+ProtectSystem=strict
+ReadWritePaths=/home/ubuntu/crypto-arbitrage-scanner/logs
+
+[Install]
+WantedBy=multi-user.target
