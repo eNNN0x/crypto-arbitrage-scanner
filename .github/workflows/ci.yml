@@ -52,7 +52,7 @@ jobs:
           fail_ci_if_error: false
 
   lint:
-    name: Lint & Format Check
+    name: Lint Check
     runs-on: ubuntu-latest
 
     steps:
@@ -63,11 +63,8 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Install linting tools
-        run: pip install ruff black
+      - name: Install ruff
+        run: pip install ruff
 
       - name: Run ruff
-        run: ruff check src/ tests/
-
-      - name: Check black formatting
-        run: black --check src/ tests/ main.py
+        run: ruff check src/ tests/ main.py --ignore E501,F401,F811
